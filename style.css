@@ -1,0 +1,30 @@
+body{
+    padding: 0rem;
+}
+
+#graph1 {
+    width: 800px;
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+     
+}
+
+#graph2 {
+    width: 800px;
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#block1{
+    display:flex;
+    justify-content: space-evenly;
+}
+
+#block2{
+    display:flex;
+    justify-content: space-evenly;
+}
