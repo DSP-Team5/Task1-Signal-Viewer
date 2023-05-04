@@ -107,21 +107,18 @@
         <input type="file" id="fileInput" accept=".csv">
 
         <div class="btn1"><button onclick="play()">
-          <img src="./icons/icons8-spielen-50.png" width="20" height="20"></img>
+          <img id = "play" alt = "Play" src="./icons/icons8-spielen-50.png" width="20" height="20"></img>
         </button></div>
-        <button  onclick="pause()">
-          <img src="./icons/icons8-pause-30.png" width="20" height="20"></img>
-        </button>
         <button onclick="rewind()">
           <img src="./icons/icons8-zurückspulen-30.png" width="20" height="20"></img>
         </button>
         <input type="range" id="speedSlider1" min="400" max="700" value="550">
         <input type="color" id="graph1Color" value="#0000ff">
         <button id="graph1Show">
-          <img src="./icons/icons8-sichtbar-24.png" width="20" height="20">Show</img>
+          <img id="showHide1" src="./icons/icons8-sichtbar-24.png" width="20" height="20"></img>
         </button>
         <button  id="graph1Hide">
-          <img src="./icons/icons8-ausblenden-30.png" width="20" height="20">Hide</img>
+          <img  src="./icons/icons8-ausblenden-30.png" width="20" height="20">Hide</img>
         </button>
         <button  id="generate-pdf-1">
           <img src="./icons/icons8-pdf-50.png" width="20" height="20">Generate PDF</img>
@@ -146,10 +143,7 @@
       <input type="file" id="fileInput2" accept=".csv">
 
       <button onclick="play2()">
-        <img src="./icons/icons8-spielen-50.png" width="20" height="20"></img>
-      </button>
-      <button onclick="pause2()">
-        <img src="./icons/icons8-pause-30.png" width="20" height="20"></img>
+        <img id = "play2" src="./icons/icons8-spielen-50.png" width="20" height="20"></img>
       </button>
       <button onclick="rewind2()">
         <img src="./icons/icons8-zurückspulen-30.png" width="20" height="20"></img>
@@ -157,7 +151,7 @@
       <input type="range" id="speedSlider2" min="400" max="700" value="550">
       <input type="color" id="graph2Color" value="#0000ff">
       <button id="graph2Show">
-        <img src="./icons/icons8-sichtbar-24.png" width="20" height="20">Show</img>
+        <img id = "showHide2" src="./icons/icons8-sichtbar-24.png" width="20" height="20">Show</img>
       </button>
       <button id="graph2Hide">
         <img src="./icons/icons8-ausblenden-30.png" width="20" height="20">Hide</img>
@@ -395,14 +389,24 @@ function updatePlot2() {
 
 
 
+const playPauseIcon1 = document.getElementById('play');
+const playPauseIcon2 = document.getElementById('play2');
+const showHideIcon1 = document.getElementById('showHide1');
+const showHideIcon2 = document.getElementById('showHide2');
         
         function play() {
-            playing1 = true;
-        }
-
-        function pause() {
+          if (playing1==true ) {
             playing1 = false;
+            playPauseIcon1.src = './icons/icons8-spielen-50.png';
+          }
+          else{
+            playing1 = true;
+            playPauseIcon1.src = './icons/icons8-pause-30.png';
+          }
         }
+    // Pause the playback
+
+            
 
         function rewind() {
             data1[0].x = [];
@@ -411,11 +415,14 @@ function updatePlot2() {
             Plotly.newPlot('graph1', data1);
         }
         function play2() {
-            playing2 = true;
-        }
-
-        function pause2() {
+          if (playing2==true ) {
             playing2 = false;
+            playPauseIcon2.src = './icons/icons8-spielen-50.png';
+          }
+          else{
+            playing2 = true;
+            playPauseIcon2.src = './icons/icons8-pause-30.png';
+          }
         }
 
         function rewind2() {
@@ -455,9 +462,19 @@ function updatePlot2() {
         // Add show/hide buttons for each graph
         const graph1ShowButton = document.getElementById("graph1Show");
         graph1ShowButton.addEventListener("click", function () {
-            graph1Visible = true;
+          if (graph1Visible==true) {
+            graph1Visible = false;
+            Plotly.restyle(graph1, { visible: false }, [0]);
+            showHideIcon1.src = './icons/icons8-ausblenden-30.png';
+          }
+            else {
+              graph1Visible = true;
             Plotly.restyle(graph1, { visible: true }, [0]);
-        });
+            showHideIcon1.src = './icons/icons8-sichtbar-24.png';
+            }
+          }
+            
+        );
 
         const graph1HideButton = document.getElementById("graph1Hide");
         graph1HideButton.addEventListener("click", function () {
