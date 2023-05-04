@@ -117,9 +117,6 @@
         <button id="graph1Show">
           <img id="showHide1" src="./icons/icons8-sichtbar-24.png" width="20" height="20"></img>
         </button>
-        <button  id="graph1Hide">
-          <img  src="./icons/icons8-ausblenden-30.png" width="20" height="20">Hide</img>
-        </button>
         <button  id="generate-pdf-1">
           <img src="./icons/icons8-pdf-50.png" width="20" height="20">Generate PDF</img>
         </button>
@@ -151,10 +148,7 @@
       <input type="range" id="speedSlider2" min="400" max="700" value="550">
       <input type="color" id="graph2Color" value="#0000ff">
       <button id="graph2Show">
-        <img id = "showHide2" src="./icons/icons8-sichtbar-24.png" width="20" height="20">Show</img>
-      </button>
-      <button id="graph2Hide">
-        <img src="./icons/icons8-ausblenden-30.png" width="20" height="20">Hide</img>
+        <img id = "showHide2" src="./icons/icons8-sichtbar-24.png" width="20" height="20"></img>
       </button>
       <button id="generate-pdf-2">
         <img src="./icons/icons8-pdf-50.png" width="20" height="20">Generate PDF</img>
@@ -476,23 +470,21 @@ const showHideIcon2 = document.getElementById('showHide2');
             
         );
 
-        const graph1HideButton = document.getElementById("graph1Hide");
-        graph1HideButton.addEventListener("click", function () {
-            graph1Visible = false;
-            Plotly.restyle(graph1, { visible: false }, [0]);
-        });
-
         const graph2ShowButton = document.getElementById("graph2Show");
         graph2ShowButton.addEventListener("click", function () {
-            graph2Visible = true;
-            Plotly.restyle(graph2, { visible: true }, [0]);
-        });
-
-        const graph2HideButton = document.getElementById("graph2Hide");
-        graph2HideButton.addEventListener("click", function () {
+          if (graph2Visible==true) {
             graph2Visible = false;
             Plotly.restyle(graph2, { visible: false }, [0]);
-        });
+            showHideIcon2.src = './icons/icons8-ausblenden-30.png';
+          }
+            else {
+              graph2Visible = true;
+            Plotly.restyle(graph2, { visible: true }, [0]);
+            showHideIcon2.src = './icons/icons8-sichtbar-24.png';
+            }
+          }
+            
+        );
 
 
 
