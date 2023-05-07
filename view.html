@@ -514,6 +514,11 @@ const showHideIcon2 = document.getElementById('showHide2');
 
 
 function generatePDF(data, statistics, image) {
+  statistics.minimum = statistics.minimum.toFixed(2);
+  statistics.maximum = statistics.maximum.toFixed(2);
+  statistics.mean = statistics.mean.toFixed(2);
+  statistics.standardDeviation = statistics.standardDeviation.toFixed(2);
+  statistics.duration = statistics.duration.toFixed(2);
   // create a new document
   var docDefinition = {
     content: [
