@@ -594,74 +594,74 @@ document.getElementById('generate-pdf-2').addEventListener('click', function () 
 
         
         //Link function
-const link = document.getElementById('link');
+        const link = document.getElementById('link');
 var linked = false;
-
-link.addEventListener('change', (event) => {
-    if (event.currentTarget.checked) {
-        linked = true;
-        playing1 = false;
-        i = 0;
-        updatePlot1();
-
+        
+        link.addEventListener('change', (event) => {
+            if (event.currentTarget.checked) {
+                linked = true;
+                playing1 = false;
+                i = 0;
+                updatePlot1();
+        
         speedSlider1.value = speedSlider1.defaultValue; //returns to its deafult value
         cinespeed = speedSlider2.defaultValue;
 
-        Plotly.redraw(graph1);
+                Plotly.redraw(graph1);
         play(); // restart the animation
-
-        if (linked) {
+        
+                if (linked) {
             data2 = data1; // use the same data for both plots
-        }
-
-        playing2 = false;
-        j = 0;
-        updatePlot2();
+                }
+        
+                playing2 = false;
+                j = 0;
+                updatePlot2();
 
         
 
         speedSlider2.value = speedSlider2.defaultValue; //returns to its deafult value
         cinespeed2 = cinespeed
-
-        Plotly.redraw(graph2);
+        
+                Plotly.redraw(graph2);
         play2(); // restart the animation
 
 
-
+        
         //define a flag to avoid infinite loop
-        let isRelayouting = false;
+                let isRelayouting = false;
+        
 
 
-
-        // Link plot1 to plot2
-        graph1.on('plotly_relayout', function (eventData) {
-            if (linked && !isRelayouting) {
-                isRelayouting = true;
+                // Link plot1 to plot2
+                graph1.on('plotly_relayout', function (eventData) {
+                    if (linked && !isRelayouting) {
+                        isRelayouting = true;
                 Plotly.relayout(graph2, eventData)
                     .then(() => {
-                        isRelayouting = false;
-                    });
-            }
-        });
-
-        // Link plot2 to plot1
-        graph2.on('plotly_relayout', function (eventData) {
-            if (linked && !isRelayouting) {
-                isRelayouting = true;
+                            isRelayouting = false;
+                        });
+                    }
+                });
+        
+                // Link plot2 to plot1
+                graph2.on('plotly_relayout', function (eventData) {
+                    if (linked && !isRelayouting) {
+                        isRelayouting = true;
                 Plotly.relayout(graph1, eventData)
                     .then(() => {
-                        isRelayouting = false;
-                    });
-            }
-        });
+                            isRelayouting = false;
+                        });
+                    }
+                });
 
 
 
     }
     else {
-        linked = false;
-    }
-});
+                linked = false;
+            }
+        });
 
 
 
